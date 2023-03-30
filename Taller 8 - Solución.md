@@ -182,14 +182,17 @@ Como referencia, tome un pantallazo de los costos mensuales estimados e inclúya
 En RDS, vaya a Bases de datos y cuando termine de crearse, identifique el endpoint y el puerto. Tome un pantallazo de la consola de RDS donde se vea claramente la base de datos con el endpoint e inclúyalo en su reporte.
 
 - **S:**
+  ![1680154612784](image/Taller8-Solución/1680154612784.png)
 
   - Endpoint: `santiago.cbcppu1qhnbp.us-east-1.rds.amazonaws.com`
   - Puerto: 5432
     ![1680152039306](image/Taller8-Solución/1680152039306.png)
 
 - **J:**
+  ![1680155097428](image/Taller8-Solución/1680155097428.png)
   - Endpoint: `juliana.cdrz11epbroh.us-east-1.rds.amazonaws.com/`
   - Puerto: 5432
+    ![1680154717165](image/Taller8-Solución/1680154717165.png)
 
 ---
 
@@ -234,6 +237,13 @@ Los siguientes pasos se realizan desde una instancia EC2 para garantizar su ejec
 
 Lance una instancia t2.micro de EC2 con Amazon Linux.
 
+- **S:**
+  IP: `100.26.235.0`
+  ![1680155046806](image/Taller8-Solución/1680155046806.png)
+- **J:**
+  IP: `18.209.211.96`
+  ![1680154791795](image/Taller8-Solución/1680154791795.png)
+
 ---
 
 ### 2.
@@ -242,6 +252,12 @@ En su directorio home (`/home/ec2-user/`) cree una carpeta data con el comando
 
 ```shell
 mkdir data
+```
+
+Conexión:
+
+```shell
+ssh -i llave.pem ec2-user@ip
 ```
 
 ---
@@ -253,6 +269,14 @@ Desde su equipo local copie el archivo world.sql en su instancia usando en coman
 ```shell
 scp -i llave.pem world.sql ec2-user@IP:/home/ec2-user/data
 ```
+
+- **S:**
+  ![1680155841518](image/Taller8-Solución/1680155841518.png)
+  ![1680155858741](image/Taller8-Solución/1680155858741.png)
+
+- **J:**
+  ![1680155955129](image/Taller8-Solución/1680155955129.png)
+  ![1680156000648](image/Taller8-Solución/1680156000648.png)
 
 ---
 
@@ -276,6 +300,8 @@ gpgcheck=0
 EOF
 ```
 
+![1680156301289](image/Taller8-Solución/1680156301289.png)
+
 ---
 
 ### 6.
@@ -286,6 +312,8 @@ Actualice los repositorios de paquetes con el comando
 sudo yum update
 ```
 
+![1680156321267](image/Taller8-Solución/1680156321267.png)
+
 ---
 
 ### 7.
@@ -295,6 +323,12 @@ Ahora sí instale el client y servidor de PostgreSQL 13
 ```shell
 sudo yum install postgresql13 postgresql13-server
 ```
+
+```shell
+sudo yum install postgresql13 postgresql13-server --skip-broken
+```
+
+![1680156471890](image/Taller8-Solución/1680156471890.png)
 
 ---
 
