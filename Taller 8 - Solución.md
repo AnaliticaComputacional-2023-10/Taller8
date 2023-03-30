@@ -37,6 +37,14 @@
 
 ---
 
+**Nota:**
+Para los screenshots se utilizará la notación
+
+- `S:` Santiago González
+- `J:` Juliana Cárdenas
+
+---
+
 ## Lance una instancia de RDS: relational database service
 
 ---
@@ -53,11 +61,21 @@ En la consola de AWS ubique el servicio RDS y vaya al Dashboard. De click en Bas
 
 Seleccione Creación estándar, PostgreSQL, versión 14. Seleccione ambiente de Capa gratuita.
 
+![1680151109337](image/Taller8-Solución/1680151109337.png)
+
 ---
 
 ### 3.
 
 En Configuración defina un nombre para la instancia de su base de datos usando su primer nombre.
+
+- **S:**
+
+  ![1680151165480](image/Taller8-Solución/1680151165480.png)
+
+- **J:**
+
+  ![1680151210344](image/Taller8-Solución/1680151210344.png)
 
 ---
 
@@ -71,11 +89,15 @@ El usuario maestro puede dejarlo como postgres.
 
 Defina una contraseña maestra que recuerde fácilmente.
 
+- S: `santiago2003`
+
+- J: `Juliana200228`
+
 ---
 
 ### 6.
 
-Seleccione instancias con ráfagas y específicamente una db.t3.micro.
+Seleccione instancias con ráfagas y específicamente una `db.t3.micro`.
 
 ---
 
@@ -101,6 +123,12 @@ En Acceso Público marque sí.
 
 En Grupo de seguridad de VPC, cree uno nuevo, use su nombre.
 
+- **S:**
+  ![1680151486585](image/Taller8-Solución/1680151486585.png)
+
+- **J:**
+  ![1680151530129](image/Taller8-Solución/1680151530129.png)
+
 ---
 
 ### 11.
@@ -125,6 +153,14 @@ Deje las demás opciones en sus valores por defecto hasta Supervisión.
 
 En Configuración adicional defina un nombre para la base de datos inicial. Puede usar por ejemplo postgres o un nombre de fácil recordación.
 
+- **S:**
+
+![1680151691088](image/Taller8-Solución/1680151691088.png)
+
+- **J:**
+
+![1680151673310](image/Taller8-Solución/1680151673310.png)
+
 ---
 
 ### 15.
@@ -137,11 +173,23 @@ Deje las demás opciones en sus valores por defecto.
 
 Como referencia, tome un pantallazo de los costos mensuales estimados e inclúyalo en su reporte.
 
+![1680151625056](image/Taller8-Solución/1680151625056.png)
+
 ---
 
 ### 17.
 
 En RDS, vaya a Bases de datos y cuando termine de crearse, identifique el endpoint y el puerto. Tome un pantallazo de la consola de RDS donde se vea claramente la base de datos con el endpoint e inclúyalo en su reporte.
+
+- **S:**
+
+  - Endpoint: `santiago.cbcppu1qhnbp.us-east-1.rds.amazonaws.com`
+  - Puerto: 5432
+    ![1680152039306](image/Taller8-Solución/1680152039306.png)
+
+- **J:**
+  - Endpoint: `juliana.cdrz11epbroh.us-east-1.rds.amazonaws.com/`
+  - Puerto: 5432
 
 ---
 
@@ -161,6 +209,14 @@ engine = psycopg2.connect(
 ```
 
 Tome un pantallazo e inclúyalo en su reporte.
+
+- **S:**
+  ![1680154161189](image/Taller8-Solución/1680154161189.png)
+
+- **J:**
+  ![1680154214582](image/Taller8-Solución/1680154214582.png)
+
+No hay tablas disponibles
 
 ---
 
