@@ -71,11 +71,14 @@ En Configuración defina un nombre para la instancia de su base de datos usando 
 
 - **S:**
 
+  - Nombre Instancia: `santiago`
+
   ![1680151165480](image/Taller8-Solución/1680151165480.png)
 
 - **J:**
 
-  ![1680151210344](image/Taller8-Solución/1680151210344.png)
+  - Nombre Instancia: `Juliana`
+    ![1680151210344](image/Taller8-Solución/1680151210344.png)
 
 ---
 
@@ -124,10 +127,13 @@ En Acceso Público marque sí.
 En Grupo de seguridad de VPC, cree uno nuevo, use su nombre.
 
 - **S:**
-  ![1680151486585](image/Taller8-Solución/1680151486585.png)
+
+  - Grupo Seguridad: `santiago`
+    ![1680151486585](image/Taller8-Solución/1680151486585.png)
 
 - **J:**
-  ![1680151530129](image/Taller8-Solución/1680151530129.png)
+  - Grupo Seguridad: `Juliana Cardenas`
+    ![1680151530129](image/Taller8-Solución/1680151530129.png)
 
 ---
 
@@ -155,11 +161,13 @@ En Configuración adicional defina un nombre para la base de datos inicial. Pued
 
 - **S:**
 
-![1680151691088](image/Taller8-Solución/1680151691088.png)
+  - dbname: `postgres`
+    ![1680151691088](image/Taller8-Solución/1680151691088.png)
 
 - **J:**
 
-![1680151673310](image/Taller8-Solución/1680151673310.png)
+  - dbname: `PrimeraBase`
+    ![1680151673310](image/Taller8-Solución/1680151673310.png)
 
 ---
 
@@ -257,7 +265,10 @@ mkdir data
 Conexión:
 
 ```shell
+# ec2
 ssh -i llave.pem ec2-user@ip
+# ubuntu
+ssh -i llave.pem ubuntu@ip
 ```
 
 ---
@@ -267,7 +278,10 @@ ssh -i llave.pem ec2-user@ip
 Desde su equipo local copie el archivo world.sql en su instancia usando en comando
 
 ```shell
+# ec2
 scp -i llave.pem world.sql ec2-user@IP:/home/ec2-user/data
+# ubuntu
+scp -i llave.pem world.sql ubuntu@IP:/home/ubuntu/data
 ```
 
 - **S:**
@@ -300,6 +314,16 @@ gpgcheck=0
 EOF
 ```
 
+```shell
+sudo tee /etc/yum.repos.d/pgdg.repo<<EOF
+[pgdg14]
+name=PostgreSQL 14 for RHEL/CentOS 7 - x86_64
+baseurl=https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-7-x86_64
+enabled=1
+gpgcheck=0
+EOF
+```
+
 ![1680156301289](image/Taller8-Solución/1680156301289.png)
 
 ---
@@ -325,7 +349,7 @@ sudo yum install postgresql13 postgresql13-server
 ```
 
 ```shell
-sudo yum install postgresql13 postgresql13-server --skip-broken
+sudo yum install postgresql14 postgresql14-server
 ```
 
 ![1680156471890](image/Taller8-Solución/1680156471890.png)
@@ -337,10 +361,19 @@ sudo yum install postgresql13 postgresql13-server --skip-broken
 Usando este cliente puede conectarse a la BD en RDS con PSQL, así
 
 ```shell
+# ubuntu
+sudo apt-get update
+sudo apt install postgresql-client-14
+```
+
+```shell
 psql --host=endpoint.rds.amazonaws.com --port=5432 --username=postgres --password
 ```
 
 modificando la dirección del endpoint, el puerto y el usuario por los adecuados, e ingresando su contraseña como la definió al crear la instancia de RDS.
+
+- **S:**
+  ![1681088234637](image/Taller8-Solución/1681088234637.png)
 
 ---
 
@@ -352,6 +385,8 @@ En este momento debe estar conectado a la BD postgres (o la principal que haya c
 CREATE DATABASE world WITH ENCODING 'LATIN1';
 ```
 
+![1681088747724](image/Taller8-Solución/1681088747724.png)
+
 ---
 
 ### 10.
@@ -359,8 +394,10 @@ CREATE DATABASE world WITH ENCODING 'LATIN1';
 Conéctese a la base de datos con el comando
 
 ```shell
-\c covid
+\c world
 ```
+
+![1681088788067](image/Taller8-Solución/1681088788067.png)
 
 ---
 
@@ -369,8 +406,13 @@ Conéctese a la base de datos con el comando
 Ejecute el script .sql que sibió a la instancia con el comando
 
 ```shell
+# ec2
 \i '/home/ec2-user/data/world.sql'
+# ubuntu
+\i '/home/ubuntu/data/world.sql'
 ```
+
+![1681089008858](image/Taller8-Solución/1681089008858.png)
 
 ---
 
@@ -388,11 +430,16 @@ Liste las tablas disponibles en la base de datos con el comando
 
 Tome un pantallazo e inclúyalo en su reporte.
 
+![1681089032882](image/Taller8-Solución/1681089032882.png)
+
 ---
 
 ### 14.
 
 Conéctese ahora desde un script local de python y ejecute algunas consultas. Tome un pantallazo e inclúyalo en su reporte.
+
+![1681089269169](image/Taller8-Solución/1681089269169.png)
+![1681089291636](image/Taller8-Solución/1681089291636.png)
 
 ---
 
