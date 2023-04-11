@@ -306,16 +306,6 @@ Agregue el repositorio de PostgreSQL 13 disponible para el manejador de paquetes
 
 ```shell
 sudo tee /etc/yum.repos.d/pgdg.repo<<EOF
-[pgdg13]
-name=PostgreSQL 13 for RHEL/CentOS 7 - x86_64
-baseurl=https://download.postgresql.org/pub/repos/yum/13/redhat/rhel-7-x86_64
-enabled=1
-gpgcheck=0
-EOF
-```
-
-```shell
-sudo tee /etc/yum.repos.d/pgdg.repo<<EOF
 [pgdg14]
 name=PostgreSQL 14 for RHEL/CentOS 7 - x86_64
 baseurl=https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-7-x86_64
@@ -323,8 +313,6 @@ enabled=1
 gpgcheck=0
 EOF
 ```
-
-![1680156301289](image/Taller8-Solución/1680156301289.png)
 
 ---
 
@@ -335,8 +323,6 @@ Actualice los repositorios de paquetes con el comando
 ```shell
 sudo yum update
 ```
-
-![1680156321267](image/Taller8-Solución/1680156321267.png)
 
 ---
 
@@ -351,8 +337,6 @@ sudo yum install postgresql13 postgresql13-server
 ```shell
 sudo yum install postgresql14 postgresql14-server
 ```
-
-![1680156471890](image/Taller8-Solución/1680156471890.png)
 
 ---
 
@@ -372,8 +356,16 @@ psql --host=endpoint.rds.amazonaws.com --port=5432 --username=postgres --passwor
 
 modificando la dirección del endpoint, el puerto y el usuario por los adecuados, e ingresando su contraseña como la definió al crear la instancia de RDS.
 
+**R/**
+Se crean nuevas instancias
+
 - **S:**
+  ![1681237003398](image/Taller8-Solución/1681237003398.png)
   ![1681088234637](image/Taller8-Solución/1681088234637.png)
+
+- **J:**
+  ![1681237049819](image/Taller8-Solución/1681237049819.png)
+  ![1681237063366](image/Taller8-Solución/1681237063366.png)
 
 ---
 
@@ -384,6 +376,8 @@ En este momento debe estar conectado a la BD postgres (o la principal que haya c
 ```shell
 CREATE DATABASE world WITH ENCODING 'LATIN1';
 ```
+
+Por errores se cambia a `'UTF8'`
 
 ![1681088747724](image/Taller8-Solución/1681088747724.png)
 
@@ -424,28 +418,59 @@ Liste las tablas disponibles en la base de datos con el comando
 \dt
 ```
 
----
-
-### 13.
-
 Tome un pantallazo e inclúyalo en su reporte.
 
 ![1681089032882](image/Taller8-Solución/1681089032882.png)
 
 ---
 
-### 14.
+### 13.
 
 Conéctese ahora desde un script local de python y ejecute algunas consultas. Tome un pantallazo e inclúyalo en su reporte.
+
+- **S:**
+
+```py
+connection = psycopg2.connect(
+    host="santiago.cbcppu1qhnbp.us-east-1.rds.amazonaws.com",
+    port='5432',
+    user="postgres",
+    password="santiago2003",
+    dbname="world",
+)
+```
+
+- **J:**
+
+```py
+connection_partner = psycopg2.connect(
+    host="juliana.cdrz11epbroh.us-east-1.rds.amazonaws.com",
+    port='5432',
+    user="postgres",
+    password="Juliana200228",
+    dbname="world",
+)
+```
 
 ![1681089269169](image/Taller8-Solución/1681089269169.png)
 ![1681089291636](image/Taller8-Solución/1681089291636.png)
 
 ---
 
-### 15.
+### 14.
 
 Conéctese ahora desde un script local de python a la base de datos de su compañero/a y ejecute algunas consultas. Tome un pantallazo e inclúyalo en su reporte.
+
+- **S:**
+
+![1681238722255](image/Taller8-Solución/1681238722255.png)
+![1681238733741](image/Taller8-Solución/1681238733741.png)
+
+- **J:**
+
+![1681237463246](image/Taller8-Solución/1681237463246.png)
+![1681237470515](image/Taller8-Solución/1681237470515.png)
+![1681237478360](image/Taller8-Solución/1681237478360.png)
 
 ---
 
